@@ -55,7 +55,7 @@ const toggleTodo = function (id) {
 
 const generateTodoDOM = function (todo) {
     const divEl = document.createElement('div')
-    const todoEl = document.createElement('span')
+    const todoEl = document.createElement('a')
     const checkboxEl = document.createElement('input')
     const buttonEl = document.createElement('button')
     
@@ -82,6 +82,7 @@ const generateTodoDOM = function (todo) {
 
     
     todoEl.textContent = todo.text
+    todoEl.setAttribute('href',`/todo-edit.html#${todo.id}`)
     
     divEl.appendChild(checkboxEl)
     divEl.appendChild(todoEl)
