@@ -5,7 +5,6 @@ let filters = {
     hideCompleted: false
 }
 
-generateSummaryDom(todos)
 renderTodos(todos,filters)
 
 // Search Input Event
@@ -23,6 +22,7 @@ document.querySelector('#hide-completed').addEventListener('change',(e) => {
 document.querySelector('#new-todo-form').addEventListener('submit',(e) => {
     e.preventDefault()
     let newTodo = {
+        id: uuidv4(),
         text: e.target.elements.todoText.value,
         completed: false
     }
@@ -30,5 +30,5 @@ document.querySelector('#new-todo-form').addEventListener('submit',(e) => {
     resetInputValues(e,filters)
     saveTodos(todos)
     renderTodos(todos,filters)
-    renderUncompletedMessage(todos)
+    generateSummaryDom(todos)
 })

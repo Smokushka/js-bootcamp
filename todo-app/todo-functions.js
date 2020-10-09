@@ -26,20 +26,67 @@ const renderTodos = function (todos, filters) {
                 return isHideCompletedMatch && isSeatchTextMatch
             })
     
-    
         filteredTodos.forEach(todo => {
             document.querySelector('#todos').appendChild(generateTodoDOM(todo))
         })
     }
-    
+    generateSummaryDom(todos)
+}
+// deleteTodo
+const deleteTodo = function (id) {
+    let todoIndex
+    todos.filter((todo,index) => {
+        if (todo.id === id) {
+            todoIndex = index
+        }
+    })
+    if (todoIndex > -1) {
+        todos.splice(todoIndex,1)
+    }
+}
+// Check Uncheck Todos
+
+const toggleTodo = function (id) {
+    let todo = todos.find((todo) => todo.id === id)
+    todo.completed = !todo.completed
 }
 
 // Get the DOM Elelments for an individual note
 
 const generateTodoDOM = function (todo) {
-    let todoEl = document.createElement('p')
+    const divEl = document.createElement('div')
+    const todoEl = document.createElement('span')
+    const checkboxEl = document.createElement('input')
+    const buttonEl = document.createElement('button')
+    
+    // transforming input to checkbox
+    checkboxEl.setAttribute('type','checkbox')
+
+    // Cheking Chekbox
+    checkboxEl.checked = todo.completed
+
+    // styling the button
+    buttonEl.textContent = 'x'
+    // add delete event
+    buttonEl.addEventListener('click',() => {
+        deleteTodo(todo.id)
+        saveTodos(todos)
+        renderTodos(todos,filters)
+    })
+    // add checked event
+    checkboxEl.addEventListener('change',(e) => {
+        toggleTodo(todo.id)
+        saveTodos(todos)
+        renderTodos(todos,filters)
+    })
+
+    
     todoEl.textContent = todo.text
-    return todoEl
+    
+    divEl.appendChild(checkboxEl)
+    divEl.appendChild(todoEl)
+    divEl.appendChild(buttonEl)
+    return divEl
 }
 // Get the DOM Elements for list summary
 
@@ -47,7 +94,7 @@ const generateSummaryDom = function (todos) {
     document.querySelector('#incompleted-message').innerHTML = ''
     let uncompletedTodos = todos.filter(item => !item.completed)
     
-    let introParagraph = document.createElement('p')
+    let introParagraph = document.createElement('h2')
     introParagraph.textContent = `You have ${uncompletedTodos.length} todos left`
     document.querySelector('#incompleted-message').appendChild(introParagraph)
 }
