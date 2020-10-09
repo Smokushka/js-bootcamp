@@ -1,6 +1,6 @@
-const todos = getSavedTodos()
+let todos = getSavedTodos()
 const todoId = location.hash.substring(1)
-const todo = todos.find((todo) => todo.id === todoId)
+let todo = todos.find((todo) => todo.id === todoId)
 
 const textElement = document.querySelector('#text')
 const deleteElement = document.querySelector('#delete')
@@ -20,4 +20,10 @@ textElement.addEventListener('input', (e) => {
 })
 textElement.value = todo.text
 
-console.log(todo)
+window.addEventListener('storage', (e) => {
+    if (e.key === 'todos') {
+        todos = JSON.parse(e.newValue)
+        todo = todos.find((todo) => todo.id === todoId)
+        textElement.value = todo.text
+    }
+})

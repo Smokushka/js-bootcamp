@@ -32,3 +32,24 @@ document.querySelector('#new-todo-form').addEventListener('submit',(e) => {
     renderTodos(todos,filters)
     generateSummaryDom(todos)
 })
+// Add storage change event
+window.addEventListener('storage', (e) => {
+    if (e.key === 'todos') {
+        todos = JSON.parse(e.newValue)
+        renderTodos(todos,filters)
+    }
+})
+
+// Dates challenge
+const now = new Date()
+const birthday = new Date('December 1 900')
+
+const nowTimestamp = now.getTime()
+const birthdayTimeStamp = birthday.getTime()
+
+if (nowTimestamp > birthdayTimeStamp) {
+    console.log(`Now is bigger than BIrthday and equal to: ${now.toString()}`)
+} else {
+    console.log(`Birthday is bigger than Now and equal to: ${birthday.toString()}`)
+
+}
