@@ -21,10 +21,13 @@ document.querySelector('#hide-completed').addEventListener('change',(e) => {
 // Add new Todo Event
 document.querySelector('#new-todo-form').addEventListener('submit',(e) => {
     e.preventDefault()
+    const timestamp = moment().valueOf()
     let newTodo = {
         id: uuidv4(),
         text: e.target.elements.todoText.value,
-        completed: false
+        completed: false,
+        createdAt: timestamp,
+        updatedAt: timestamp
     }
     todos.unshift(newTodo)
     resetInputValues(e,filters)

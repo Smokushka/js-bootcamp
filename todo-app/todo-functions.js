@@ -106,3 +106,8 @@ const resetInputValues = function (e,filters) {
     e.target.elements.todoText.value = ''
     filters.searchText = ''
 }
+// 
+
+const updateTimestampElement = function (todo) {
+    timestampElement.textContent = moment(todo.updatedAt).fromNow()
+}
