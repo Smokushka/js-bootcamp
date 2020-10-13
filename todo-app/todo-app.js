@@ -53,3 +53,9 @@ if (nowTimestamp > birthdayTimeStamp) {
     console.log(`Birthday is bigger than Now and equal to: ${birthday.toString()}`)
 
 }
+
+// Moment Js Challenges
+
+const nowMoment = moment().year(1984).month('December').date(1)
+
+console.log(nowMoment.format('MMM D, YYYY'))
