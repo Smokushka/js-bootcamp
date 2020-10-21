@@ -5,7 +5,7 @@ class Hangman {
         this.guestedLetters = []
         this.status = 'playing'    
     }
-    getPuzzle () {
+    get puzzle () {
         let puzzle = ''
         this.word.forEach((letter,index) => {
             if(this.guestedLetters.includes(letter) || letter === ' ') {
@@ -40,13 +40,14 @@ class Hangman {
         // finished
         let isCompleted = false;
         let lettersGuessedCorrectly = 0
-        this.word.forEach((letter) => {
+        let wordWithNoSpaces = this.word.filter((letter) => letter != ' ')
+        wordWithNoSpaces.forEach((letter) => {
             if (this.guestedLetters.includes(letter)) {
                 lettersGuessedCorrectly++
             }
         })
     
-        if (lettersGuessedCorrectly === this.word.length) {
+        if (lettersGuessedCorrectly === wordWithNoSpaces.length) {
             isCompleted = true
         }
     
@@ -54,7 +55,7 @@ class Hangman {
             this.status = 'finished'
         }
     }
-    getStatusMessage () {
+    get statusMessage () {
         let statusMessage
         switch (this.status) {
             case 'playing': 
