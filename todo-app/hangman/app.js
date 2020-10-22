@@ -17,28 +17,20 @@ window.addEventListener('keypress', (e) => {
 })
 
 
-getPuzzle("3",(error,data) => {
-    if(error) {
-        console.log(error)
-    } else if (data) {
-        console.log(data)
-    }
+getPuzzle('2').then((puzzle) => {
+    console.log(puzzle)
+},(error) => {
+    console.log(error)
 })
 
-getCountryDetails('US',(error,data) => {
-    if(error) {
-        console.log(error)
-    } else if (data) {
-        console.log(data)
-    }
+getCountryDetails('US').then((countryName) => {
+    console.log(countryName)
+},(error) => {
+    console.log(error)
 })
-// const request = new XMLHttpRequest()
-// request.open('GET', 'http://puzzle.mead.io/puzzle')
-// request.send()
+const createTipper = (tipAmount) => {
+    return (billAmount) => tipAmount * billAmount
+}
 
-// request.addEventListener('readystatechange', (e) => {
-//     if (e.target.readyState === 4 && e.target.status === 200) {
-//         const data = JSON.parse(e.target.response)
-//         console.log(data)
-//     }
-// })
+const standardtip = createTipper(0.15)
+console.log(standardtip(100))
