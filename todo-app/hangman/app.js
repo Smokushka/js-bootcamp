@@ -15,3 +15,30 @@ window.addEventListener('keypress', (e) => {
     game1.makeGuess(guess)
     renderPuzzle()
 })
+
+
+getPuzzle("3",(error,data) => {
+    if(error) {
+        console.log(error)
+    } else if (data) {
+        console.log(data)
+    }
+})
+
+getCountryDetails('US',(error,data) => {
+    if(error) {
+        console.log(error)
+    } else if (data) {
+        console.log(data)
+    }
+})
+// const request = new XMLHttpRequest()
+// request.open('GET', 'http://puzzle.mead.io/puzzle')
+// request.send()
+
+// request.addEventListener('readystatechange', (e) => {
+//     if (e.target.readyState === 4 && e.target.status === 200) {
+//         const data = JSON.parse(e.target.response)
+//         console.log(data)
+//     }
+// })
