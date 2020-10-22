@@ -19,15 +19,16 @@ window.addEventListener('keypress', (e) => {
 
 getPuzzle('2').then((puzzle) => {
     console.log(puzzle)
-},(error) => {
+}).catch((error) => {
     console.log(error)
 })
 
 getCountryDetails('US').then((countryName) => {
     console.log(countryName)
-},(error) => {
+}).catch((error) => {
     console.log(error)
 })
+
 const createTipper = (tipAmount) => {
     return (billAmount) => tipAmount * billAmount
 }
