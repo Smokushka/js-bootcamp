@@ -35,3 +35,21 @@ const createTipper = (tipAmount) => {
 
 const standardtip = createTipper(0.15)
 console.log(standardtip(100))
+
+getCurrentCountry().then((country) => {
+    console.log(country)
+}).catch((error) => {
+    console.log(`Error: ${error}`)
+})
+
+
+getLocation().then((location) => {
+    return location.country
+}).then((country) => {
+    getCountryDetails(country).then((countryName) => {
+        console.log(`You live in ${countryName}`)
+    })
+}).catch((error) => {
+    console.log(`Error: ${error}`)
+})
+// console.log(locationData)
