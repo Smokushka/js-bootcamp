@@ -1,4 +1,5 @@
-const game1 = new Hangman('Black Cat',2)
+let game1
+
 
 const renderPuzzle = function () {
     guessesLeftEl = document.querySelector('#guesses-left')
@@ -8,48 +9,19 @@ const renderPuzzle = function () {
     puzzleWordEl.textContent = game1.puzzle
     statusEl.textContent = game1.status
 }
+const startNewGame = async () => {
+    const puzzle = await getPuzzle('2')
+    game1 = new Hangman(puzzle,5)
+    renderPuzzle()
+}
+startNewGame()
 
-renderPuzzle()
 window.addEventListener('keypress', (e) => {
     const guess = e.key
     game1.makeGuess(guess)
     renderPuzzle()
 })
 
+const resetEl = document.querySelector('#reset')
 
-getPuzzle('2').then((puzzle) => {
-    console.log(puzzle)
-}).catch((error) => {
-    console.log(error)
-})
-
-getCountryDetails('US').then((countryName) => {
-    console.log(countryName)
-}).catch((error) => {
-    console.log(error)
-})
-
-const createTipper = (tipAmount) => {
-    return (billAmount) => tipAmount * billAmount
-}
-
-const standardtip = createTipper(0.15)
-console.log(standardtip(100))
-
-getCurrentCountry().then((country) => {
-    console.log(country)
-}).catch((error) => {
-    console.log(`Error: ${error}`)
-})
-
-
-getLocation().then((location) => {
-    return location.country
-}).then((country) => {
-    getCountryDetails(country).then((countryName) => {
-        console.log(`You live in ${countryName}`)
-    })
-}).catch((error) => {
-    console.log(`Error: ${error}`)
-})
-// console.log(locationData)
+resetEl.addEventListener('click',startNewGame)
