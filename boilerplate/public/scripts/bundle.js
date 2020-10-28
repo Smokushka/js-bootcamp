@@ -1,1 +1,0 @@
-(()=>{"use strict";console.log("utilities.js"),console.log("index.js"),console.log(4),console.log("Alex"),console.log("".concat("fuck".toUpperCase(),"!"))})();
