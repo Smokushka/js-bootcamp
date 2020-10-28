@@ -6,3 +6,6 @@ class Hangman {
         return 'TEst message'
     }
 }
+
+const game = new Hangman()
+console.log(game.myMethod())
