@@ -1,1 +1,1 @@
-(()=>{console.log("Mike");const e=new class{myMethod(){return"TEst message"}};console.log(e.myMethod())})();
+(()=>{"use strict";console.log("utilities.js"),console.log("index.js"),console.log(4),console.log("Alex"),console.log("".concat("fuck".toUpperCase(),"!"))})();
